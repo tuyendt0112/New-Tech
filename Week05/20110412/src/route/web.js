@@ -8,7 +8,8 @@ const initWebRoute = (app) => {
   router.post("/", homeController.postBlog);
   router.get("/post/:id", homeController.getDetailPost);
   router.post("/delete", homeController.deletePost);
-
+  router.post("/edit/:id", homeController.editPost);
+  router.get("/edit/:id", homeController.getEditBlog);
   return app.use("/", router);
 };
 //export default initWebRoute;

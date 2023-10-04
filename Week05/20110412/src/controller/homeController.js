@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
 import myListPost from "../models/myListPost";
-const posts = myListPost;
+let posts = myListPost;
 let getBlog = (req, res) => {
   return res.render("index", { posts });
 };
@@ -29,18 +29,41 @@ let getDetailPost = (req, res) => {
   }
 };
 let deletePost = (req, res) => {
-  const posts = myListPost;
-  let postId = req.body.id;
+  // let posts = myListPost;
+  const postId = req.body.id;
   console.log("id delete>>>>>>>>>>>>", postId);
 
-  const post = posts.filter((post) => post.id !== postId);
+  const postCurrent = posts.filter(
+    (post) => Number(post.id) !== Number(postId)
+  );
 
+  console.log("result >>>>", postCurrent);
+  posts = postCurrent;
+  return res.redirect("/");
+};
+let editPost = (req, res) => {
+  const postId = req.params.id;
+  console.log("id edit>>>>>>>>>>>>", postId);
+  const title = req.body.title;
+  const content = req.body.content;
+  const post = posts.find((post) => Number(post.id) == Number(postId));
+  post.title = title;
+  post.content = content;
   console.log("result >>>>", post);
-  return res.send("index");
+  // posts = postCurrent;
+  return res.redirect("/");
+};
+let getEditBlog = (req, res) => {
+  const postId = req.params.id;
+  const post = posts.find((post) => post.id == postId);
+
+  return res.render("edit", { post });
 };
 module.exports = {
   getBlog,
   postBlog,
   getDetailPost,
   deletePost,
+  editPost,
+  getEditBlog,
 };
