@@ -8,7 +8,6 @@ let postBlog = (req, res) => {
   let newPost = req.body;
   newPost.id = Math.floor(Math.random() * 1001);
   posts.push(newPost);
-  console.log(newPost);
   return res.render("index", { posts });
 };
 let getDetailPost = (req, res) => {
