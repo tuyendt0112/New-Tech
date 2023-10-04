@@ -8,25 +8,27 @@
     <h1>{{post.title}}</h1>
 
     <p>{{post.content}}</p>
+  
+    {{#if post.comments}}
 
-    {{!-- Hiển thị danh sách comments -->
-{{#if post.comments}}
-  {{#each post.comments}}
-      {{this.author}}: {{this.text}}/>
-  {{/each}}
-{{else}}
-  <p>Chưa có bình luận nào.</p>
-{{/if}} --}}
+      {{#each post.comments}}
+        {{this.author}}:
+        {{this.comment}}
+        </br>
+      {{/each}}
+    {{else}}
+      <p>No Comment</p>
+    {{/if}}
 
     <form action="/comment/{{post.id}}" method="POST">
-      <input type="text" name="author" placeholder="Tên tác giả" required /><br
+      <input type="text" name="author" placeholder="author" required /><br
       />
       <textarea
-        name="text"
-        placeholder="Nội dung bình luận"
+        name="comment"
+        placeholder="comment"
         required
       ></textarea><br />
-      <button type="submit">Bình luận</button>
+      <button type="submit">Submit</button>
     </form>
 
   </body>

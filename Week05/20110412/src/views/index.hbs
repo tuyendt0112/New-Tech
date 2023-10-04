@@ -11,19 +11,13 @@
           <h2>{{this.title}}</h2>
           <p>{{this.content}}</p>
 
-          <a href="/post/{{this.id}}">Xem chi tiết</a>
+          <a href="/post/{{this.id}}">Detail</a>
           |
-          {{!-- <a href="/delete/{{this.id}}">Xóa bài viết</a> --}}
+
           <form action="/delete" method="post">
             <input type="text" hidden value="{{this.id}}" name="id" />
             <button type="submit"> Delete </button>
           </form>
-
-          {{!-- <a href="/edit/{{this.id}}">Sửa bài viết</a> --}}
-          {{!-- <form action="/edit/{{this.id}}" method="post">
-            <input type="text" hidden value="{{this.id}}" name="id" />
-            <button type="submit"> Edit </button>
-          </form> --}}
           <form action="" method="post">
             <button type="submit"><a href="/edit/{{this.id}}">Edit </a></button>
           </form>
@@ -34,8 +28,8 @@
     <div>
       <form action="/" method="POST">
 
-        <input type="text" name="title" placeholder="Tiêu đề" required /><br />
-        <textarea name="content" placeholder="Nội dung" required></textarea><br
+        <input type="text" name="title" placeholder="Title" required /><br />
+        <textarea name="content" placeholder="Content" required></textarea><br
         />
         <button type="submit">post</button>
       </form>
