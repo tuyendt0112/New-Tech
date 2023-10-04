@@ -1,0 +1,33 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>{{post.title}}</h1>
+
+    <p>{{post.content}}</p>
+
+    {{!-- Hiển thị danh sách comments -->
+{{#if post.comments}}
+  {{#each post.comments}}
+      {{this.author}}: {{this.text}}/>
+  {{/each}}
+{{else}}
+  <p>Chưa có bình luận nào.</p>
+{{/if}} --}}
+
+    <form action="/comment/{{post.id}}" method="POST">
+      <input type="text" name="author" placeholder="Tên tác giả" required /><br
+      />
+      <textarea
+        name="text"
+        placeholder="Nội dung bình luận"
+        required
+      ></textarea><br />
+      <button type="submit">Bình luận</button>
+    </form>
+
+  </body>
+</html>
