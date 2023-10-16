@@ -50,7 +50,7 @@ class AddPost extends React.Component {
           onChange={(event) => this.handleOnChangeTitle(event)}
         />
         <label>Content</label>
-        <input
+        <textarea
           className="add-content"
           type="text"
           value={content}

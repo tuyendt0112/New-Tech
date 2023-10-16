@@ -68,6 +68,13 @@ class ListBlog extends React.Component {
       ListBlog: [...this.state.ListBlog, post],
     });
   };
+
+  handleEditPost = (post) => {
+    const { ListBlog } = this.state;
+    const editpost = ListBlog.find((editpost) => post.id == editpost.id);
+    this.props.history.push(`/post/edit/${post.id}`, editpost);
+  };
+
   render() {
     let { ListBlog } = this.state;
     console.log(">>>>state", this.state);
@@ -88,8 +95,12 @@ class ListBlog extends React.Component {
                     Detail
                   </button>
 
-                  {/* <Link to={`/detail/${item.id}`}>Detail</Link> */}
-                  <button className="btn-edit">Edit</button>
+                  <button
+                    className="btn-edit"
+                    onClick={() => this.handleEditPost(item)}
+                  >
+                    Edit
+                  </button>
                   <button
                     className="btn-delete"
                     onClick={() => this.handleDeletelPost(item)}

@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router";
+import "../styles/listblog.scss";
 class DetailPost extends React.Component {
   state = {
     post: {},
@@ -18,9 +19,9 @@ class DetailPost extends React.Component {
     // console.log("check props >>>>", this.props);
     return (
       <div className="blog-child" key={this.state.post.id}>
-        <h2> {this.state.post.title} </h2>
-        <p>{this.state.post.content}</p>
-        <h4>Comments:</h4>
+        <input className="input-title" value={this.state.post.title} />
+        <textarea className="input-content" value={this.state.post.content} />
+
         {this.state.post.comments &&
           this.state.post.comments.map((item, index) => {
             return (
