@@ -29,7 +29,8 @@ class DetailPost extends React.Component {
               </div>
             );
           })}
-
+        <p> Add comment:</p>
+        
         <button className="btn-back" onClick={() => this.handleBackButton()}>
           Back
         </button>

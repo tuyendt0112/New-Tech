@@ -3,6 +3,7 @@ import "../styles/listblog.scss";
 import { withRouter } from "react-router";
 import DetailPost from "./DetailPost";
 import { Link } from "react-router-dom";
+import AddPost from "./AddPost";
 class ListBlog extends React.Component {
   state = {
     ListBlog: [
@@ -55,7 +56,18 @@ class ListBlog extends React.Component {
     console.log("check detailpost >>", detailpost);
     this.props.history.push(`/post/detail/${post.id}`, detailpost);
   };
-
+  handleDeletelPost = (post) => {
+    let currentList = this.state.ListBlog;
+    currentList = currentList.filter((item) => item.id !== post.id);
+    this.setState({
+      ListBlog: currentList,
+    });
+  };
+  addNewPost = (post) => {
+    this.setState({
+      ListBlog: [...this.state.ListBlog, post],
+    });
+  };
   render() {
     let { ListBlog } = this.state;
     console.log(">>>>state", this.state);
@@ -78,12 +90,19 @@ class ListBlog extends React.Component {
 
                   {/* <Link to={`/detail/${item.id}`}>Detail</Link> */}
                   <button className="btn-edit">Edit</button>
-                  <button className="btn-delete">Delete</button>
+                  <button
+                    className="btn-delete"
+                    onClick={() => this.handleDeletelPost(item)}
+                  >
+                    Delete
+                  </button>
                 </div>
               );
             })}
         </div>
-        <div className="add-post"></div>
+        <div className="add-post">
+          <AddPost addNewPost={this.addNewPost} />
+        </div>
       </div>
     );
   }
